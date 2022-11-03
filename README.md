@@ -31,7 +31,6 @@ Perform Te test and get confidence interval:
 ```{r}
 Te_CI(x,y,alpha=0.05)
 ```
--0.4702358  0.6538033
 
 
 Here we also show a quick simulation to compare the performance between Te test, Welch test and Z test. We can see welch's type one error is biased from 0.05, which means it is not an exact test.
