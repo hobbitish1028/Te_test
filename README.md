@@ -1,7 +1,6 @@
 
 ---
 output: github_document
-bibliography: "references.bib"
 ---
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
@@ -28,7 +27,7 @@ Go to https://arxiv.org/pdf/2210.16473.pdf for more details.
 
 Here is an example for the use of this package: (?Te_test)
 
-
+```{r, include = FALSE}
 n1<-5
 n2<-50
 mu1<-0
@@ -37,7 +36,7 @@ sigma1<-1
 sigma2<-2
 x<-rnorm(n1,mu1,sigma1)
 y<-rnorm(n2,mu2,sigma2)
-
+```
 
 Perform Te test and get statistics:
 Te_test(x,y)
