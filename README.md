@@ -8,8 +8,15 @@ Welch test is frequently used for two sample t test, when two groups' variances 
 Go to https://arxiv.org/pdf/2210.16473.pdf for more details.
 
 
-Here is an example for the use of this package: (?Te_test)
+Use this package:
+```{r}
+library(devtools)
+install_github("hobbitish1028/Te_test")
+library(Te)
+```
 
+
+Here is an example for the use of this package: (?Te_test)
 ```{r}
 n1<-5
 n2<-50
