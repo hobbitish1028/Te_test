@@ -53,6 +53,11 @@ sigma2<-2
 x<-rnorm(n1,mu1,sigma1)
 y<-rnorm(n2,mu2,sigma2)
 Te_test(x,y)
+```
+
+
+Calcualte confidence interval for $\mu_1-\mu_2$:
+```{r example}
 Te_CI(x,y,alpha=0.05)
 ```
 
