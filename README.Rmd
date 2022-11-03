@@ -18,20 +18,36 @@ knitr::opts_chunk$set(
 <!-- badges: start -->
 <!-- badges: end -->
 
-The goal of Te is to perform "exact" two sample test with unequal variance.
+The goal of Te test is to perform "exact" two sample test with unequal variance.
 
 $$X_i \sim N(\mu_1,\sigma_1^2), i=1,2,...,n_1$$
 
 $$Y_i \sim N(\mu_2,\sigma_2^2), i=1,2,...,n_2$$
 
-Hypothesis testing when $\sigma_1^2 \not = \sigma_2^2$:
+Hypothesis testing of $H_0: \mu_1 = \mu_2$ when $\sigma_1^2 \not = \sigma_2^2$:
 
-$$H_0: \mu_1 = \mu_2$$
 
-# History
+# Other avaible methods
+
 Welch test is frequently used for two sample t test, when two groups' variances are unequal. However it is an asymptotic method, which means the type one error is not exactly alpha. 
 
-Te test (e for exact) performs exact/non-asymptotic two sample t test, where two groups' variance can be unequal and the type one error is exactly alpha. It achieves the maximal degree of freedom and has better power than simple paired t test.
+Z test, which uses normal statistics and is less accurate then Welch test.
+
+Paired t test, only works when sample sizes are equal.
+
+Other non-conventional methods like two-stage test.
+
+# Feature
+Te test (e for exact) performs exact/non-asymptotic two sample t test: 
+
+- two groups' variance can be unequal. 
+
+- the type one error is exactly alpha. 
+
+- It achieves the maximal degree of freedom and has better power than simple paired t test.
+
+- Significantly outperform Welch t test when sample size is small (e.g. 5-50). 
+
 
 Go to https://arxiv.org/pdf/2210.16473.pdf for more details.
 
@@ -52,7 +68,7 @@ This is a basic example which shows you how to solve a common problem:
 
 ```{r}
 library(Te)
-n1<-5
+n1<-15
 n2<-50
 mu1<-0
 mu2<-0

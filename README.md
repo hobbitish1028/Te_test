@@ -6,28 +6,43 @@
 <!-- badges: start -->
 <!-- badges: end -->
 
-The goal of Te is to perform “exact” two sample test with unequal
+The goal of Te test is to perform “exact” two sample test with unequal
 variance.
 
 *X*<sub>*i*</sub> ∼ *N*(*μ*<sub>1</sub>,*σ*<sub>1</sub><sup>2</sup>), *i* = 1, 2, ..., *n*<sub>1</sub>
 
 *Y*<sub>*i*</sub> ∼ *N*(*μ*<sub>2</sub>,*σ*<sub>2</sub><sup>2</sup>), *i* = 1, 2, ..., *n*<sub>2</sub>
 
-Hypothesis testing when
+Hypothesis testing of
+*H*<sub>0</sub> : *μ*<sub>1</sub> = *μ*<sub>2</sub> when
 *σ*<sub>1</sub><sup>2</sup> ≠ *σ*<sub>2</sub><sup>2</sup>:
 
-*H*<sub>0</sub> : *μ*<sub>1</sub> = *μ*<sub>2</sub>
-
-# History
+# Other avaible methods
 
 Welch test is frequently used for two sample t test, when two groups’
 variances are unequal. However it is an asymptotic method, which means
 the type one error is not exactly alpha.
 
-Te test (e for exact) performs exact/non-asymptotic two sample t test,
-where two groups’ variance can be unequal and the type one error is
-exactly alpha. It achieves the maximal degree of freedom and has better
-power than simple paired t test.
+Z test, which uses normal statistics and is less accurate then Welch
+test.
+
+Paired t test, only works when sample sizes are equal.
+
+Other non-conventional methods like two-stage test.
+
+# Feature
+
+Te test (e for exact) performs exact/non-asymptotic two sample t test:
+
+-   two groups’ variance can be unequal.
+
+-   the type one error is exactly alpha.
+
+-   It achieves the maximal degree of freedom and has better power than
+    simple paired t test.
+
+-   Significantly outperform Welch t test when sample size is small
+    (e.g. 5-50).
 
 Go to <https://arxiv.org/pdf/2210.16473.pdf> for more details.
 
@@ -40,7 +55,7 @@ library(devtools)
 #> Loading required package: usethis
 install_github("hobbitish1028/Te_test",force=TRUE)
 #> Downloading GitHub repo hobbitish1028/Te_test@HEAD
-#>      checking for file ‘/private/var/folders/t9/xnj_n8410l1_xx0k9r8q2hdw0000gn/T/Rtmpfcy6QO/remotes135966fd6032/hobbitish1028-Te_test-bc4fb6d/DESCRIPTION’ ...  ✔  checking for file ‘/private/var/folders/t9/xnj_n8410l1_xx0k9r8q2hdw0000gn/T/Rtmpfcy6QO/remotes135966fd6032/hobbitish1028-Te_test-bc4fb6d/DESCRIPTION’
+#>      checking for file ‘/private/var/folders/t9/xnj_n8410l1_xx0k9r8q2hdw0000gn/T/Rtmpg2QySY/remotes18106ebaf62f/hobbitish1028-Te_test-251ea58/DESCRIPTION’ ...  ✔  checking for file ‘/private/var/folders/t9/xnj_n8410l1_xx0k9r8q2hdw0000gn/T/Rtmpg2QySY/remotes18106ebaf62f/hobbitish1028-Te_test-251ea58/DESCRIPTION’
 #>   ─  preparing ‘Te’:
 #>      checking DESCRIPTION meta-information ...  ✔  checking DESCRIPTION meta-information
 #>   ─  checking for LF line-endings in source and make files and shell scripts
@@ -58,7 +73,7 @@ This is a basic example which shows you how to solve a common problem:
 
 ``` r
 library(Te)
-n1<-5
+n1<-15
 n2<-50
 mu1<-0
 mu2<-0
@@ -68,16 +83,16 @@ x<-rnorm(n1,mu1,sigma1)
 y<-rnorm(n2,mu2,sigma2)
 Te_test(x,y)
 #>        mean_x        mean_y          sd_x          sd_y Te statistics 
-#>    0.01330439   -0.08161777    2.07103427    1.32189825    0.19120901 
+#>    0.18819634    0.03075076    1.92927162    0.81138014    0.43613238 
 #>       p_value            df 
-#>    0.85767517    5.00000000
+#>    0.66939085   15.00000000
 ```
 
 Find confidence interval for *μ*<sub>1</sub> − *μ*<sub>2</sub>
 
 ``` r
 Te_CI(x,y,alpha=0.05)
-#> [1] -1.473237  1.283392
+#> [1] -0.9317224  0.6168312
 ```
 
 ## Simulation
